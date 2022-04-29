@@ -45,6 +45,8 @@ final class RequestContextProvider implements ContextProviderInterface
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),
             'controller' => $controller ? $this->cloner->cloneVar($controller) : $controller,
+            // so can merge dumos from same request
+            '_stopwatch_token' => $request->attributes->get('_stopwatch_token'),
             'identifier' => spl_object_hash($request),
         ];
     }
